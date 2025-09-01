@@ -15,7 +15,7 @@ const Sidenavbar = () => {
         { name: "Budget",
           id: 2,
           icon:PiggyBank, 
-          path:'/dashboard/budget'
+          path:'/dashboard/budgets'
         },
         { name: "Expenses",
             id: 3,
@@ -32,7 +32,7 @@ const Sidenavbar = () => {
     const path=usePathname();
   return (
     <div className='h-screen flex-row justify-center items-start'>
-        <img src="logo.jpg" alt="" height={40} width={40}/>
+        <img src="logo.jpg" alt="no image" height={40} width={40}/>
         <div>
             {menuItem.map((menu,index) => (
                 <Link href={menu.path}>
