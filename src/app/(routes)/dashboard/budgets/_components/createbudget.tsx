@@ -20,7 +20,7 @@ const Createbudget = ({refreshData}:{refreshData:any}) => {
   const [emojiIcon,setEmojiIcon]=useState('😀');
   const [openEmojiPicker, setOpenEmojiPicker]=useState(false);
   const [name, setName]=useState("");
-  const [amount, setAmount]=useState("");
+  const [amount, setAmount]=useState('');
   const {user}=useUser();
   const onCreateBudget= async() => {
     const result=await db.insert(Budgets)
