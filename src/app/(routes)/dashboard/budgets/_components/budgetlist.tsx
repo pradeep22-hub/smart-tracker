@@ -1,10 +1,11 @@
 "use client"
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Createbudget from './createbudget'
-import { eq, getTableColumns, sql } from 'drizzle-orm'
+import { desc, eq, getTableColumns, sql } from 'drizzle-orm'
 import { db } from '../../../../../../utils/dbConfig'
 import { Budgets, Expenses } from '../../../../../../utils/schema'
 import { useUser } from '@clerk/nextjs'
+import BudgetItem from './budgetItem'
 
 
 const Budgetlist = () => {
@@ -22,23 +23,29 @@ const Budgetlist = () => {
     }).from(Budgets)
     .leftJoin(Expenses,eq(Budgets.id,Expenses.budgetId))
     .where(eq(Budgets.createdBy,user?.primaryEmailAddress?.emailAddress!))
-    .groupBy(Budgets.id);
+    .groupBy(Budgets.id)
+    .orderBy(desc(Budgets.id));
     setBudgetList(result)
   }
   return (
     <div>
       <div className='mt-7'>
         <div className='grid grid-cols-1
-        md:grid-cols-2 lg:grid-cols-3'>
-            <Createbudget/>
-            {budgetList.map((item:any)=>(
-              <div key={item.id} className='border p-5 m-3 rounded-lg shadow-md'>
-                <div className='flex justify-between items-center'>
+        md:grid-cols-2 lg:grid-cols-3 gap-5'>
+            <Createbudget refreshData={()=> getBudgetList()}/>
+            {budgetList?.length>0? budgetList.map((budget,index)=>(
+              <BudgetItem budget={budget} />
+            ))
+          :[1,2,3,4,5].map((item,index)=>(
+            <div key={index} className='w-full bg-slate-200 round-lg h-[150px] animate-pulse'></div>
+          ))
+          }
         </div>
 
       </div>
     </div>
   )
 }
+
 
 export default Budgetlist
