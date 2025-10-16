@@ -34,7 +34,7 @@ const Budgetlist = () => {
         md:grid-cols-2 lg:grid-cols-3 gap-5'>
             <Createbudget refreshData={()=> getBudgetList()}/>
             {budgetList?.length>0? budgetList.map((budget,index)=>(
-              <BudgetItem budget={budget} />
+              <BudgetItem  budget={budget} />
             ))
           :[1,2,3,4,5].map((item,index)=>(
             <div key={index} className='w-full bg-slate-200 round-lg h-[150px] animate-pulse'></div>

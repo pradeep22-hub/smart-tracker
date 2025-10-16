@@ -5,6 +5,7 @@ import { db } from '../../../../../../utils/dbConfig';
 import { Budgets, Expenses } from '../../../../../../utils/schema';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
+import moment from 'moment';
 
 function AddExpenses({budgetId,user,refreshData}:{budgetId:any ,user:any,refreshData:any}) {
     const [name,setName]=useState('');
@@ -14,7 +15,7 @@ function AddExpenses({budgetId,user,refreshData}:{budgetId:any ,user:any,refresh
         name:name,
         amount:amount,
         budgetId:budgetId,
-        createdAt:user?.primaryEmailAddress?.emailAddress
+        createdAt:moment().format('DD/MM/yyyy')
          }).returning({insertedId:Budgets.id})
          if(result){
           refreshData();
@@ -30,7 +31,7 @@ function AddExpenses({budgetId,user,refreshData}:{budgetId:any ,user:any,refresh
         </div>
         <div className='mt-2'>
           <h2 className='text-black font-medium my-1'>Expense Amount</h2>
-          <Input type='number' placeholder='e.g. 1000' onChange={(e)=> setAmount(e.target.value)}/>
+          <Input type='numeric' placeholder='e.g. 1000' onChange={(e)=> setAmount(e.target.value)}/>
         </div>
         <Button disabled={!(name&&amount)} onClick={()=>addNewExpense()} className='mt-3 w-full'>Add New Expense</Button>
     </div>
