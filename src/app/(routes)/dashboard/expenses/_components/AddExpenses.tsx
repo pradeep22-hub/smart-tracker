@@ -6,7 +6,7 @@ import { Budgets, Expenses } from '../../../../../../utils/schema';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 
-function AddExpenses({budgetId,user}:{budgetId:any ,user:any}) {
+function AddExpenses({budgetId,user,refreshData}:{budgetId:any ,user:any,refreshData:any}) {
     const [name,setName]=useState('');
     const [amount, setAmount]=useState('');
     const addNewExpense= async()=>{
@@ -17,6 +17,7 @@ function AddExpenses({budgetId,user}:{budgetId:any ,user:any}) {
         createdAt:user?.primaryEmailAddress?.emailAddress
          }).returning({insertedId:Budgets.id})
          if(result){
+          refreshData();
             toast('New Expense Added')
          }
     }
@@ -29,7 +30,7 @@ function AddExpenses({budgetId,user}:{budgetId:any ,user:any}) {
         </div>
         <div className='mt-2'>
           <h2 className='text-black font-medium my-1'>Expense Amount</h2>
-          <Input type='number' placeholder='e.g. 1000' onChange={(e)=> setName(e.target.value)}/>
+          <Input type='number' placeholder='e.g. 1000' onChange={(e)=> setAmount(e.target.value)}/>
         </div>
         <Button disabled={!(name&&amount)} onClick={()=>addNewExpense()} className='mt-3 w-full'>Add New Expense</Button>
     </div>
