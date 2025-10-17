@@ -10,7 +10,7 @@ import BudgetItem from './budgetItem'
 
 const Budgetlist = () => {
   const [budgetList, setBudgetList] = useState([])
-  const {user}=useUser()
+  const {user}=useUser();
   useEffect(() => {
     user && getBudgetList()
   }, [user])

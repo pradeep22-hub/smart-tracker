@@ -8,7 +8,8 @@ const BudgetItem = ({budget}:{budget:any}) => {
     return perc.toFixed(2)
   }
   return (
-    <Link href={'/dashboard/expenses/'+ budget?.id} className='p-5 border rounded-lg hover:shadow-md cursor-pointer h-[170px]'>
+    <Link href={'/dashboard/expenses/'+ budget?.id}>
+      <div  className='p-5 border rounded-lg hover:shadow-md cursor-pointer h-[170px]'>
       <div className='flex gap-2 items-center justify-between'>
       <div className='flex gap-2 items-center'>
         <h2 className='text-2xl p-3 bg-slate-100 rounded-full'>{budget?.icon}</h2>
@@ -33,6 +34,7 @@ const BudgetItem = ({budget}:{budget:any}) => {
             </div>
 
           </div>
+        </div>
         </div>
     </Link>
   )
