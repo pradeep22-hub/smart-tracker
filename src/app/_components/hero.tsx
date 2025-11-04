@@ -20,7 +20,7 @@ const Hero = () => {
           className="inline-block rounded border border-green-600 bg-green-600 px-5 py-3 font-medium text-white shadow-sm transition-colors hover:bg-green-700"
           href="/sign-in"
         >
-          Get Started
+          View Dashboard
         </a>
 
        
