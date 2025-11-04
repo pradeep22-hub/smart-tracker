@@ -1,5 +1,7 @@
 
 
+import { sql } from "drizzle-orm";
+import { timestamp } from "drizzle-orm/gel-core";
 import { integer, numeric, pgTable, serial, varchar } from "drizzle-orm/pg-core";
 
 
@@ -18,4 +20,5 @@ export const  Expenses = pgTable("expenses", {
     amount: numeric("amount").notNull().default("0"),
     budgetId: integer("budget_id").references(() => Budgets.id),
     createdAt: varchar("createdAT").notNull(),
+
 });
