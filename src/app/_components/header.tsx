@@ -13,7 +13,7 @@ const Header = () => {
         <img src="logo.jpg" alt="" width={80} height={80}/>
         { isSignedIn? <UserButton/> : 
         <Link href='/sign-in'>
-          <Button>Get Started</Button>
+          <Button >Get Started</Button>
         </Link>
 
         } 
